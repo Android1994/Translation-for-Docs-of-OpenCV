@@ -8,6 +8,7 @@
 
 <center>![MatBasicImageForComputer](http://docs.opencv.org/master/MatBasicImageForComputer.jpg)</center>
 
+<<<<<<< HEAD
 如上图所示，这幅车的图像只是一个包含像素值的密集矩阵。获取和存储像素值的方式应需求而不同，但最终都是把图像变为一个数值矩阵，同时还要存储描述这个矩阵的信息。OpenCV库主要目标就是操作和处理这些信息。因此，你需要知道的第一件事就是OpenCV是如何存储并处理图像的。
 
 ## **Mat**
@@ -177,3 +178,6 @@ OpenCV支持使用<<操作符来输出其它常见的OpenCV数据结构：
   
 
  
+=======
+如上图所示
+>>>>>>> origin/master
