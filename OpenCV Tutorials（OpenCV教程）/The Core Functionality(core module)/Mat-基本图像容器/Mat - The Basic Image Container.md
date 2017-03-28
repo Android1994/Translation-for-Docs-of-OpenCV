@@ -1,4 +1,4 @@
-﻿# Mat - The Basic Image Container
+# Mat - The Basic Image Container
 
 ---
 
@@ -8,7 +8,6 @@
 
 <center>![MatBasicImageForComputer](http://docs.opencv.org/master/MatBasicImageForComputer.jpg)</center>
 
-<<<<<<< HEAD
 如上图所示，这幅车的图像只是一个包含像素值的密集矩阵。获取和存储像素值的方式应需求而不同，但最终都是把图像变为一个数值矩阵，同时还要存储描述这个矩阵的信息。OpenCV库主要目标就是操作和处理这些信息。因此，你需要知道的第一件事就是OpenCV是如何存储并处理图像的。
 
 ## **Mat**
@@ -69,36 +68,38 @@ Mat作为图像数据的容器确实做得很好，它同时也是一个矩阵�
 
 - cv::Mat::Mat构造函数
 
-  例如：
+  `Mat M(2,2, CV_8UC3, Scalar(0,0,255));
+   cout << "M = " << endl << " " << M << endl << endl;`
+    
+   <center>![MatBasicContainerOut1](http://docs.opencv.org/master/MatBasicContainerOut1.png)</center>
 
-    `Mat M(2,2, CV_8UC3, Scalar(0,0,255));
-    cout << "M = " << endl << " " << M << endl << endl;`
-<center>![MatBasicContainerOut1](http://docs.opencv.org/master/MatBasicContainerOut1.png)</center>
-
-  对于两维多通道图像，我们先定义它们的尺寸：依次为行数和列数。
+   对于两维多通道图像，我们先定义它们的尺寸：依次为行数和列数。
   
-  接下来，我们要定义存储元素的数据类型以及每个矩阵元素的通道数，规则如下：
+   接下来，我们要定义存储元素的数据类型以及每个矩阵元素的通道数，规则如下：
   
 
-    `CV_[每个通道的比特数][有符号或无符号][类型前缀]C[通道数]`
+   `CV_[每个通道的比特数][有符号或无符号][类型前缀]C[通道数]`
    
-  比如，CV_8UC3表示每个像素有3个通道，每个通道是8比特长的无符号字符型，这是被预先定义好的。cv::Scalar是含有4个元素的短向量，你可以通过它初始化每个像素的值。如果你想要创建更多维数的矩阵，你可以使用上面的类型宏，把通道数放在圆括号里，如下所示。
+   比如，CV_8UC3表示每个像素有3个通道，每个通道是8比特长的无符号字符型，这是被预先定义好的。cv::Scalar是含有4个元素的短向量，你可以通过它初始化每个像素的值。如果你想要创建更多维数的矩阵，你可以使用上面的类型宏，把通道数放在圆括号里，如下所示。
   
 - 在构造函数里使用c/c++的数组进行初始化
+
   `int sz[3] = {2,2,2};
   Mat L(3,sz, CV_8UC(1), Scalar::all(0));`
 
   上面的例子展示了如何创建超过两位的矩阵，先传递维数，再传递一个包含每一维大小的指针，其它和前面一样。
   
 - cv::Mat::create()函数
+
   `M.create(4,4,CV_8UC(2));
    cout<<"M="<<endl<<" "<<M<<endl<<endl`
 
-<center>![MatBasicContainerOut2](http://docs.opencv.org/master/MatBasicContainerOut2.png)</center>
+   <center>![MatBasicContainerOut2](http://docs.opencv.org/master/MatBasicContainerOut2.png)</center>
 
    通过这种方法创建Mat，你不能初始化元素的值。当新矩阵大小与旧矩阵不匹配时，它会重新分配数据内存空间。
    
 - Matlab风格的初始化: cv::Mat::zeros,cv::Mat::ones,cv::Mat::eye。指定矩阵大小和数据类型:
+
   `Mat E = Mat::eye(4, 4, CV_64F);
     cout << "E = " << endl << " " << E << endl << endl;
     Mat O = Mat::ones(2, 2, CV_32F);
@@ -106,18 +107,22 @@ Mat作为图像数据的容器确实做得很好，它同时也是一个矩阵�
     Mat Z = Mat::zeros(3,3, CV_8UC1);
     cout << "Z = " << endl << " " << Z << endl << endl;`
 
-<center>![MatBasicContainerOut3](http://docs.opencv.org/master/MatBasicContainerOut3.png)</center>
+    <center>![MatBasicContainerOut3](http://docs.opencv.org/master/MatBasicContainerOut3.png)</center>
 
 - 对于小矩阵，你可以使用逗号分隔进行初始化：
+
   ` Mat C = (Mat_<double>(3,3) << 0, -1, 0, -1, 5, -1, 0, -1, 0);
     cout << "C = " << endl << " " << C << endl << endl;`
-<center>![MatBasicContainerOut6](http://docs.opencv.org/master/MatBasicContainerOut6.png)</center>
+
+    <center>![MatBasicContainerOut6](http://docs.opencv.org/master/MatBasicContainerOut6.png)</center>
 
 - 对已存在的矩阵对象创建新的矩阵头，使用cv::Mat::clone和cv::Mat::copyTo复制数据：
+
   <center>![MatBasicContainerOut7](http://docs.opencv.org/master/MatBasicContainerOut7.png)</center>
 
 > Note:
        你可以使用cv::randu()函数对矩阵元素赋随机值，你需要给出上下界
+       
        `Mat R = Mat(3, 2, CV_8UC3);
         randu(R, Scalar::all(0), Scalar::all(255));`
         
@@ -126,58 +131,69 @@ Mat作为图像数据的容器确实做得很好，它同时也是一个矩阵�
 在上面的例子中，你可以看到默认的格式选项。OpenCV允许你对输出矩阵进行格式化：
 
 - 默认:
+
   `cout << "R (default) = " << endl <<        R           << endl << endl;`
-  <center>![MatBasicContainerOut8](http://docs.opencv.org/master/MatBasicContainerOut8.png)</center>
+  
+   <center>![MatBasicContainerOut8](http://docs.opencv.org/master/MatBasicContainerOut8.png)</center>
 
 - Python:
+
   `cout << "R (python)  = " << endl << format(R, Formatter::FMT_PYTHON) << endl << endl;`
-  <center>![MatBasicContainerOut16](http://docs.opencv.org/master/MatBasicContainerOut16.png)</center>
+  
+   <center>![MatBasicContainerOut16](http://docs.opencv.org/master/MatBasicContainerOut16.png)</center>
 
 - 逗号分隔值(CSV):
+
   `cout << "R (csv)     = " << endl << format(R, Formatter::FMT_CSV   ) << endl << endl;`
-  <center>![MatBasicContainerOut10](http://docs.opencv.org/master/MatBasicContainerOut10.png)</center>
+  
+   <center>![MatBasicContainerOut10](http://docs.opencv.org/master/MatBasicContainerOut10.png)</center>
 
 - Numpy:
+
   ` cout << "R (numpy)   = " << endl << format(R, Formatter::FMT_NUMPY ) << endl << endl;`
-  <center>![MatBasicContainerOut9](http://docs.opencv.org/master/MatBasicContainerOut9.png)</center>
+  
+   <center>![MatBasicContainerOut9](http://docs.opencv.org/master/MatBasicContainerOut9.png)</center>
 
 - C:
+
   `cout << "R (c)       = " << endl << format(R, Formatter::FMT_C     ) << endl << endl;`
-  <center>![MatBasicContainerOut11](http://docs.opencv.org/master/MatBasicContainerOut11.png)</center>
+  
+   <center>![MatBasicContainerOut11](http://docs.opencv.org/master/MatBasicContainerOut11.png)</center>
 
 ## **其它数据的输出**
 
 OpenCV支持使用<<操作符来输出其它常见的OpenCV数据结构：
 
 - 2D Point
+
   `Point2f P(5, 1);
     cout << "Point (2D) = " << P << endl << endl;`
-  <center>![MatBasicContainerOut12](http://docs.opencv.org/master/MatBasicContainerOut12.png)</center>
+    
+    <center>![MatBasicContainerOut12](http://docs.opencv.org/master/MatBasicContainerOut12.png)</center>
 
 - 3D Point
+
   `Point3f P3f(2, 6, 7);
     cout << "Point (3D) = " << P3f << endl << endl;`
-  <center>![MatBasicContainerOut13](http://docs.opencv.org/master/MatBasicContainerOut13.png)</center>
+    
+    <center>![MatBasicContainerOut13](http://docs.opencv.org/master/MatBasicContainerOut13.png)</center>
 
 - 通过cv::Mat输出std::vector
+
   ` vector<float> v;
     v.push_back( (float)CV_PI);   v.push_back(2);    v.push_back(3.01f);
     cout << "Vector of floats via Mat = " << Mat(v) << endl << endl;`
-<center>![MatBasicContainerOut14](http://docs.opencv.org/master/MatBasicContainerOut14.png)</center>
+    
+    <center>![MatBasicContainerOut14](http://docs.opencv.org/master/MatBasicContainerOut14.png)</center>
   
 - 输出像素点向量
+
   `  vector<Point2f> vPoints(20);
     for (size_t i = 0; i < vPoints.size(); ++i)
         vPoints[i] = Point2f((float)(i * 5), (float)(i % 7));
     cout << "A vector of 2D Points = " << vPoints << endl << endl;`
-<center>![MatBasicContainerOut15](http://docs.opencv.org/master/MatBasicContainerOut15.png)</center>
+    
+    <center>![MatBasicContainerOut15](http://docs.opencv.org/master/MatBasicContainerOut15.png)</center>
 
 以上大部分例子都在一个小型的控制台应用里，你能从[此](https://github.com/opencv/opencv/tree/master/samples/cpp/tutorial_code/core/mat_the_basic_image_container/mat_the_basic_image_container.cpp)下载或从cpp sample文件夹里的core部分找到。
 你也能从[YouTube](https://www.youtube.com/watch?v=1tibU7vGWpk)找到一个小型的演示demo。
-
-  
-
- 
-=======
-如上图所示
->>>>>>> origin/master
