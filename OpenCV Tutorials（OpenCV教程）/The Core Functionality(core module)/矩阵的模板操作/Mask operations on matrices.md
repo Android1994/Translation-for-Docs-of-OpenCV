@@ -10,11 +10,15 @@
 
 <center>I(i,j)=5∗I(i,j)−[I(i−1,j)+I(i+1,j)+I(i,j−1)+I(i,j+1)] </center>
 
-<=>  I * M ,其中M = 
-                   <center> i/j, -1, 0, +1</center>
-                   <center> -1, 0, -1, 0</center>
-                   <center> 0, -1, 5, -1</center>
-                   <center> +1, 0, -1, 0</center>
+I * M ,其中M = 
+
+<center> i/j, -1, 0, +1</center>
+
+<center> -1, 0, -1, 0</center>
+
+<center> 0, -1, 5, -1</center>
+
+<center> +1, 0, -1, 0</center>
 
 第一个是计算公式，第二个是该式用模板操作的表现形式。具体做法是，把你想要计算的像素点和模板中心（上面的例子中是0,0（左上角））相对应，然后将模板的值乘上对应像素的值再求和。上面两个公式是等价的，但是在比较大的矩阵上后一个公式更直观。
 
