@@ -1,4 +1,4 @@
-﻿# Mask operations on matrices
+# Mask operations on matrices
 
 ---
 
@@ -10,7 +10,7 @@
 
 <center>I(i,j)=5∗I(i,j)−[I(i−1,j)+I(i+1,j)+I(i,j−1)+I(i,j+1)] </center>
 
-I * M ,其中M = 
+<=> I * M ,其中M = 
 
 <center> i/j, -1, 0, +1</center>
 
