@@ -1,4 +1,4 @@
-# *Translation-for-docs-of-OpenCV*
+# *Translation-for-docs-of-OpenCV(Chinese)*
 ### OpenCV官方文档中文翻译
 ### [官方文档网址](http://docs.opencv.org/master/)
 ---
