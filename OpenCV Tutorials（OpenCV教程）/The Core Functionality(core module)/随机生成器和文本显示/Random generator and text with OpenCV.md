@@ -77,8 +77,10 @@
   我们可以看出：
   - 循环将会执行NUMBER次，所以会有NUMBER条直线被画出。
   - 直线的两个端点由pt1和pt2给出，对于pt1我们可以看到：
-    `pt1.x=rng.uniform(x_1,x_2);
-     pt1.y=rng.uniform(y_1,y_2);`
+    ```  
+    pt1.x=rng.uniform(x_1,x_2);
+    pt1.y=rng.uniform(y_1,y_2);
+    ```
      - 我们知道rng是随机数生成器对象，上面的代码中我们调用了函数rng.uniform(a,b)。这样可以生成满足参数是a,b的均匀分布的随机数。
      - 从上面的解释我们可以看出，每条线的端点pt1和pt2将是随机的，所以直线的位置是不可预测的，由此可产生惊艳的视觉效果。
      - 我们还可以发现cv::line的参数中，控制颜色的参数我们是这样指定的：
@@ -101,10 +103,10 @@
 
    ```
    int Displaying_Random_Text( Mat image, char* window_name, RNG rng )
-{
-  int lineType = 8;
-  for ( int i = 1; i < NUMBER; i++ )
-  {
+   {
+   int lineType = 8;
+   for ( int i = 1; i < NUMBER; i++ )
+   {
     Point org;
     org.x = rng.uniform(x_1, x_2);
     org.y = rng.uniform(y_1, y_2);
@@ -113,13 +115,15 @@
     imshow( window_name, image );
     if( waitKey(DELAY) >= 0 )
       { return -1; }
-  }
-  return 0;
-}
+   }
+   return 0;
+   }
    ```
    
    是不是一切都很熟悉，除了下面这条语句：
+   
    `putText( image, "Testing text rendering", org, rng.uniform(0,8),rng.uniform(0,100)*0.05+0.1, randomColor(rng), rng.uniform(1, 10), lineType);`
+   
    所以，cv::putText这个函数究竟做了什么？在上面的例子中：
    
    - 在图像image上显示了“Testing text rendering”这些文字
@@ -135,22 +139,22 @@
 
    ```
    int Displaying_Big_End( Mat image, char* window_name, RNG rng )
-{
-  Size textsize = getTextSize("OpenCV forever!", FONT_HERSHEY_COMPLEX, 3, 5, 0);
-  Point org((window_width - textsize.width)/2, (window_height - textsize.height)/2);
-  int lineType = 8;
-  Mat image2;
-  for( int i = 0; i < 255; i += 2 )
-  {
+   {
+   Size textsize = getTextSize("OpenCV forever!", FONT_HERSHEY_COMPLEX, 3, 5, 0);
+   Point org((window_width - textsize.width)/2, (window_height - textsize.height)/2);
+   int lineType = 8;
+   Mat image2;
+   for( int i = 0; i < 255; i += 2 )
+   {
     image2 = image - Scalar::all(i);
     putText( image2, "OpenCV forever!", org, FONT_HERSHEY_COMPLEX, 3,
            Scalar(i, i, 255), 5, lineType );
     imshow( window_name, image2 );
     if( waitKey(DELAY) >= 0 )
       { return -1; }
-  }
-  return 0;
-}
+   }
+   return 0;
+   }
    ```
    
    除了函数getTextSize(获得text变量的大小),我们还能在for循环中看到下面这一新操作：
