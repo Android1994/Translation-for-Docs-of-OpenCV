@@ -52,7 +52,7 @@
    作者： Bernát Gábor
    你将看到如何使用OpenCV的cv::FileStorage数据结构对XML和YAML格式的文件进行读写操作。
 
- - 与OpenCV1的互用
+ - 与OpenCV1的混用
    兼容性： > OpenCV 2.0
    作者： Bernát Gábor
    你将学会怎样将使用了老版本OpenCV的程序转换为能够适应新版本OpenCV的方法。
