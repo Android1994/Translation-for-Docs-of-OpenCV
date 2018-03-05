@@ -176,3 +176,32 @@ ParallelMandelbrot parallelMandelbrot(mandelbrotImg, x1, y1, scaleX, scaleY);
 parallel_for_(Range(0, mandelbrotImg.rows*mandelbrotImg.cols), parallelMandelbrot);
 ```
 
+此处的range代表操作执行的总次数，也就是图像中像素的总数。你可以通过[`cv::setNumThreads`](https://docs.opencv.org/master/db/de0/group__core__utils.html#gae78625c3c2aa9e0b83ed31b73c6549c0)来设置线程总数。也可以使用[`cv::paraller_for_`]()中的nstripes这个参数来指定分配的数量。比如，假如你的处理器有4个线程，设置`cv::setNumThreas(2)`和`nstripes=2`一样都是将任务分配到两个线程上，而默认是使用处理器所有可用的线程。
+
+>Note：C++11标准能够简化并行实现，即使用lambda表达式代替`ParallelMandelbrot`类
+
+```
+    parallel_for_(Range(0, mandelbrotImg.rows*mandelbrotImg.cols), [&](const Range& range){
+        for (int r = range.start; r < range.end; r++)
+        {
+            int i = r / mandelbrotImg.cols;
+            int j = r % mandelbrotImg.cols;
+            float x0 = j / scaleX + x1;
+            float y0 = i / scaleY + y1;
+            complex<float> z0(x0, y0);
+            uchar value = (uchar) mandelbrotFormula(z0);
+            mandelbrotImg.ptr<uchar>(i)[j] = value;
+        }
+    });
+```
+
+### **结果**
+
+你可以在[这里](https://github.com/opencv/opencv/blob/master/samples/cpp/tutorial_code/core/how_to_use_OpenCV_parallel_for_/how_to_use_OpenCV_parallel_for_.cpp)找到完整的教程代码。并行实现的效果取决于cpu的类型。比如，在4核8线程的cpu上，预计大概可以加速6.9倍。有很多因素可以解释为什么达不到理论上的8倍加速。主要原因如下：
+- 创建和管理线程的瓶颈，
+- 后台程序同时也在运行，
+- 每个核2个逻辑线程的4物理核cpu和8物理核cpu存在差异。
+
+教程代码的结果如下（你可以修改代码来使用更多的迭代次数，并且可以根据逃逸迭代次数以及通过调色板赋给每个像素彩色值以获得更漂亮的图像）：
+![how_to_use_OpenCV_parallel_for_Mandelbrot.png](https://docs.opencv.org/master/how_to_use_OpenCV_parallel_for_Mandelbrot.png)
+
