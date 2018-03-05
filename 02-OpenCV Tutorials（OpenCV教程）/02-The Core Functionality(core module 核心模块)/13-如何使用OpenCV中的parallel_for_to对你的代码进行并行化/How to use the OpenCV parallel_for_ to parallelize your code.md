@@ -203,5 +203,5 @@ parallel_for_(Range(0, mandelbrotImg.rows*mandelbrotImg.cols), parallelMandelbro
 - 每个核2个逻辑线程的4物理核cpu和8物理核cpu存在差异。
 
 教程代码的结果如下（你可以修改代码来使用更多的迭代次数，并且可以根据逃逸迭代次数以及通过调色板赋给每个像素彩色值以获得更漂亮的图像）：
-![how_to_use_OpenCV_parallel_for_Mandelbrot.png](https://docs.opencv.org/master/how_to_use_OpenCV_parallel_for_Mandelbrot.png)
+<center>![how_to_use_OpenCV_parallel_for_Mandelbrot.png](https://docs.opencv.org/master/how_to_use_OpenCV_parallel_for_Mandelbrot.png)</center>
 
