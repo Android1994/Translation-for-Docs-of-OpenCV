@@ -1,4 +1,4 @@
-﻿# Changing the contrast and brightness of an image!
+# Changing the contrast and brightness of an image（改变图像的亮度和对比度）
 
 ---
 

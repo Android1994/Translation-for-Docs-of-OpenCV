@@ -1,4 +1,4 @@
-﻿# Discrete Fourier Transform
+# Discrete Fourier Transform（离散傅里叶变换）
 
 
 

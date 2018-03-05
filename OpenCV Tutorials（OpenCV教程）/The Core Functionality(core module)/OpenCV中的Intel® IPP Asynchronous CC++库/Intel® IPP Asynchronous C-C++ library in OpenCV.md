@@ -1,4 +1,4 @@
-﻿# Intel® IPP Asynchronous C/C++ library in OpenCV
+# Intel® IPP Asynchronous C/C++ library in OpenCV（OpenCV中的Intel® IPP Asynchronous CC++库）
 
 
 ---

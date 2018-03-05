@@ -1,4 +1,4 @@
-﻿# How to scan images, lookup tables and time measurement with OpenCV
+# How to scan images, lookup tables and time measurement with OpenCV（如何遍历图像、查找表以及测量时间）
 
 ---
 

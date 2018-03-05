@@ -1,4 +1,4 @@
-﻿# **Introduction(介绍)**
+# **Introduction(介绍)**
 ---
 
 OpenCV[(开源计算机视觉库)](http://opencv.org)是一个遵从BSD协议的开源库，其中包含几百种计算机视觉相关算法。这个文档是基于OpenCV 2.X版本的API，和1.X版本不同的是它是基于C++的而1.X版本是基于C的。

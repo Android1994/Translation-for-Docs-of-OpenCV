@@ -13,7 +13,7 @@
    作者： Bernát Gábor
    你将学会如何访问图像的每一个像素。福利：OpenCV自带的时间度量方法。
 
- - 矩阵的模板操作
+ - 矩阵上的模板操作
    语言： C++, Java, Python
    兼容性： > OpenCV 2.0
    作者： Bernát Gábor

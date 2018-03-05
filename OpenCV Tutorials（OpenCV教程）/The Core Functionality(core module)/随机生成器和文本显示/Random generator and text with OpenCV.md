@@ -1,4 +1,4 @@
-﻿# Random generator and text with OpenCV
+# Random generator and text with OpenCV（随机生成器和文本显示）
 
 ---
 

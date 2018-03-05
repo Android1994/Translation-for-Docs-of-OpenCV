@@ -1,4 +1,4 @@
-﻿# Adding (blending) two images using OpenCV
+# Adding (blending) two images using OpenCV（图像叠加（融合））
 
 
 ---
